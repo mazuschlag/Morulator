@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
 
-const labelStyle = {
-	display: 'inline-block',
-	width: '140px',
-	textAlign: 'right',
-	paddingRight: '0.5em'
-}
-
 const inputStyle = {
-	display: 'inline-block'
-}
+	width: "350px",
+	marginLeft: "0px",
+	marginTop: "10px"
+};
 
 export class Loan extends Component {
 	constructor(props) {
@@ -24,11 +19,11 @@ export class Loan extends Component {
 
 	render () {
 		return (
-			<div className="Loan">
-				<label>
-					Loan Balance:	
-						<input type='text' value={this.props.balance} onChange={this.handleChange} />
-				</label>
+			<div className="form-group row" style={inputStyle}>
+  			<label className="col-2 col-form-label">Loan Balance</label>
+  			<div className="col-10">
+    			<input className="form-control" type="text" value={this.props.balance} onChange={this.handleChange} id="loanBalance"/>
+  			</div>
 			</div>
 		);
 	}
@@ -47,11 +42,11 @@ export class Interest extends Component {
 
 	render () {
 		return (
-			<div className="Interest">
-				<label>
-					Interest Rate (%):	
-					<input type='text' value={this.props.rate} onChange={this.handleChange}/>
-				</label>
+			<div className="form-group row" style={inputStyle}>
+  			<label className="col-2 col-form-label">Interest Rate (%)</label>
+  			<div className="col-10">
+    			<input className="form-control" type="text" value={this.props.rate} onChange={this.handleChange} id="interestRate"/>
+  			</div>
 			</div>
 		);
 	}
@@ -70,20 +65,18 @@ export class Term extends Component {
 
 	render () {
 		return (
-			<div className="Term">
-				<label>
-					Loan Term (years):
-						<select value={this.props.term} onChange={this.handleChange}>  
-							<option value='0'>0</option>
-							<option value='5'>5</option>
-							<option value='10'>10</option>
-							<option value='15'>15</option>
-							<option value='20'>20</option>
-							<option value='25'>25</option>
-							<option value='30'>30</option>
-						</select>	
-				</label>
-			</div>
+		  <div className="form-group" style={inputStyle}>
+		    <label>Loan Term (years)</label>
+		    <select className="form-control" value={this.props.term} onChange={this.handleChange} id="loanTerm">
+					<option value='0'>0</option>
+					<option value='5'>5</option>
+					<option value='10'>10</option>
+					<option value='15'>15</option>
+					<option value='20'>20</option>
+					<option value='25'>25</option>
+					<option value='30'>30</option>
+		    </select>
+		  </div>
 		);
 	}
 }

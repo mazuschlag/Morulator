@@ -4,11 +4,15 @@ import {Calculate} from './Containers';
 
 const allStyle = {
   font: '12px sans-serif',
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)'
+  position: 'absolute',
+  top: "30%",
+  left: "40%"
 };
+
+const h2Style = {
+  width: "350px",
+  textAlign: "center"
+}
 
 export class App extends Component {
   constructor(props) {
@@ -17,7 +21,8 @@ export class App extends Component {
       loanBalance: '0',
       interestRate: '0',
       loanTerm: '0',
-      result: ''
+      result: '',
+      display: 'none'
     };
     this.changeLoanBalance = this.changeLoanBalance.bind(this);
     this.changeInterestRate = this.changeInterestRate.bind(this);
@@ -60,17 +65,17 @@ export class App extends Component {
       const mortgage = 'Your monthly mortgage rate is: $' + (p * ((r*Math.pow((1+r),n)) / (Math.pow((1+r),n) - 1))).toFixed(2).toString();
       this.setState({ result: mortgage });
     }
+    this.setState({ display: 'inline'});
   }
 
   render() {
     return (
-      <div style={allStyle}>
-        <h1> Mortgage Calculator </h1>
+      <div className='container' style={allStyle}>
+        <h1 style={h2Style}> THE MORULATOR </h1>
         <Loan balance={this.state.loanBalance} onChange={this.changeLoanBalance} />
         <Interest rate={this.state.interestRate} onChange={this.changeInterestRate} />
         <Term term={this.state.loanTerm} onChange={this.changeLoanTerm} />
-        <Calculate onClick={this.calculate}/>
-        <p>{this.state.result}</p>
+        <Calculate result={this.state.result} onClick={this.calculate} display={this.state.display} />
         {/*<p> Loan Balance = {this.state.loanBalance}, Interest Rate = {this.state.interestRate}, Loan Term = {this.state.loanTerm} </p>*/}
       </div>
     );
